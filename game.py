@@ -20,7 +20,8 @@ def player_turn(player,board):
             boardcode.print_board(board)
             break
 def main():
-    freshboard=boardcode.board.copy()
+    #freshboard=boardcode.board.copy() Shallow Copy
+    freshboard = [row[:] for row in boardcode.board]
     boardcode.print_board(freshboard)
     player1='X'
     player2='O'

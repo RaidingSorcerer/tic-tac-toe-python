@@ -16,11 +16,13 @@ def player_move(player,x,y,board):
 
 
 def print_board(board):
+    print("\t   0   1   2")
+    print("\t  -----------")
     counter=0
     for column in board:
-        print(f"\t{counter}",end=' ')
+        print(f"\t{counter}|",end=' ')
         for row in column:
-            print(f"\t{row}",end=' ')
+            print(f"{row}  ",end=' ')
         print()
         counter+=1
 
@@ -51,3 +53,4 @@ def winning(board):
         
     elif board[0][2]== board[1][1]==board[2][0]and board[0][2] !='-':
         return board[0][2]
+#print(print_board(board))
