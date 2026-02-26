@@ -12,9 +12,6 @@ def player_move(player,x,y,board):
         print("Already filled retry")
         return False
         
-       
-
-
 def print_board(board):
     print("\t   0   1   2")
     print("\t  -----------")
@@ -26,31 +23,21 @@ def print_board(board):
         print()
         counter+=1
 
-def winning(board):
-    #Rows
-    if board[0][0]== board[0][1]==board[0][2] and board[0][0] !='-':
-        return board[0][0]
-        
-    elif board[1][0]== board[1][1]==board[1][2] and board[1][0] !='-':
-        return board[1][0]
-        
-    elif board[2][0]== board[2][1]==board[2][2] and board[2][0] != '-':
-        return board[2][0]
-        
-    #Columns
-    elif board[0][0]== board[1][0]==board[2][0] and board[0][0] !='-':
-        return board[0][0]
-        
-    elif board[0][1]== board[1][1]==board[2][1]and board[0][1] !='-':
-        return board[0][1]
-        
-    elif board[0][2]== board[1][2]==board[2][2]and board[0][2] !='-':
-        return board[0][2]
-       
-    #Diagonals
-    elif board[0][0]== board[1][1]==board[2][2] and board[0][0] !='-':
-        return board[0][0]
-        
-    elif board[0][2]== board[1][1]==board[2][0]and board[0][2] !='-':
-        return board[0][2]
-#print(print_board(board))
+
+def new_winning(board):
+    winners=[[(0,0),(0,1),(0,2)],
+         [(1,0),(1,1),(1,2)],#ROWS
+         [(2,0),(2,1),(2,2)],
+
+         [(0,0),(1,0),(2,0)],
+         [(0,1),(1,1),(2,1)],# COLUMNS
+         [(0,2),(1,2),(2,2)],
+
+         [(0,0),(1,1),(2,2)],#DIAGONALS
+         [(0,2),(1,1),(2,0)]
+         ]
+    for combo in winners:
+        checklist=[board[cell[0]][cell[1]] for cell in combo  ]
+        if(checklist[0]==checklist[1]==checklist[2] and checklist[0]!='-'):
+            return checklist[0]
+    

@@ -1,5 +1,5 @@
 import boardcode
-
+import ai
 def is_board_full(board):
     a=[row for columns in board for row in columns]
     return '-' not in a
@@ -19,6 +19,7 @@ def player_turn(player,board):
         if boardcode.player_move(player, x, y, board):
             boardcode.print_board(board)
             break
+
 def main():
     #freshboard=boardcode.board.copy() Shallow Copy
     freshboard = [row[:] for row in boardcode.board]
@@ -26,8 +27,9 @@ def main():
     player1='X'
     player2='O'
     while True:
+        #print(f"free coordinates {ai.get_empty_cells(freshboard)}")# get empty cells
         player_turn(player1,freshboard)
-        winner=boardcode.winning(freshboard)
+        winner=boardcode.new_winning(freshboard)
         if winner:
             print(f"{winner} wins")
             break
@@ -36,7 +38,7 @@ def main():
             break
 
         player_turn(player2,freshboard) 
-        winner=boardcode.winning(freshboard)
+        winner=boardcode.new_winning(freshboard)
         if winner:
             print(f"{winner} wins")
             break
@@ -44,4 +46,5 @@ def main():
             print("It's a tie")
             break
 if __name__ == "__main__":
-    main()     
+    main() 
+    
